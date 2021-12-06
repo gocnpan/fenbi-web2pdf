@@ -7,7 +7,7 @@ function hide_answer() {
         ad[i].style.display = 'none';
     }
     var rl = document.body.getElementsByClassName('right-options');
-    for (; 0 < rl.length; ) {
+    for (; 0 < rl.length;) {
         rl[0].className = 'fb-radioInput radio-single font-color-gray-mid border-gray-ligth2';
     }
     // solution-item bg-color-gray-bold ng-star-inserted
@@ -17,22 +17,28 @@ function hide_answer() {
             click_timu(el);
         });
     }
-}
-// hide_answer();
 
-// window.onload = function () {
-//     // solution-item bg-color-gray-bold ng-star-inserted
-//     var tm = document.body.getElementsByClassName('solution-item bg-color-gray-bold ng-star-inserted'); // 获取题目&答案元素集
-//     for (var m = 0; m < tm.length; m++) {
-//         tm[m].addEventListener('click', function () {
-//             click_timu(tm[m]);
-//         });
-//     }
-// }
+    /**
+     * 切换页面时，需要重新配置相应的内容
+     */
+    var pc = document.body.getElementsByClassName('paging')[0].addEventListener('click', function(){
+        st_hide_answer();
+    })
+}
+
+function st_hide_answer(){
+    setTimeout(function () {
+        hide_answer();
+    }, 250)
+}
+
+window.onload = function () {
+    st_hide_answer();
+}
 
 function click_timu(tm) {
     tm.currentTarget.getElementsByClassName('question-fb-solution-detail')[0].style.display
-     = tm.currentTarget.getElementsByClassName('question-fb-solution-detail')[0].style.display === 'none' ? '' : 'none';
+        = tm.currentTarget.getElementsByClassName('question-fb-solution-detail')[0].style.display === 'none' ? '' : 'none';
 }
 
 // 监听来自命令板的指令
