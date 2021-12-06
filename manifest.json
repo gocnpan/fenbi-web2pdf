@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "fenbi-web2pdf",
+    "version": "0.01",
+    "description": "粉笔错题页面转换为pdf页面，并导出",
+    "icons": {
+        "16": "img/icon.png",
+        "32": "img/icon.png",
+        "48": "img/icon.png",
+        "128": "img/icon.png"
+    },
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "browser_action": {
+        "default_title": "页面转换",
+        "default_popup": "src/popup.html"
+    }
+}

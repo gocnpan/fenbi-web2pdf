@@ -1,0 +1,102 @@
+[
+    {
+        "id": 3522620,
+        "content": "<p>许多人在拍照时喜欢摆出“剪刀手”动作。对此，有人认为，如果手离镜头足够近，相机分辨率足够高，拍出的照片一旦上网，黑客就能通过照片放大技术和人工智能增强技术将照片中的人物指纹信息还原出来。这会让指纹认证及个人身份信息无密可保。因此，拍照时摆出“剪刀手”动作存在安全风险。</p><p>以下哪项如果为真，最能质疑上述结论?</p>",
+        "material": null,
+        "type": 1,
+        "difficulty": 5,
+        "createdTime": 1616841100992,
+        "shortSource": null,
+        "accessories": [
+            {
+                "options": [
+                    "目前智能手机虽在高速发展，但是分辨率还不足以拍出清晰的指纹",
+                    "即使是高清网传照片，通过它还原指纹信息也存在一定的技术门槛",
+                    "实验证明，网络照片受自身清晰度影响不满足识别指纹信息的条件",
+                    "从电子照片中提取到用户指纹信息的相关报道，实为愚人节新闻"
+                ],
+                "type": 101
+            }
+        ],
+        "correctAnswer": {
+            "choice": "2",
+            "type": 201
+        },
+        "hasVideo": 1
+    },
+    {
+        "id": 2377453,
+        "content": "<p>亚麻布：亚麻</p>",
+        "material": null,
+        "type": 1,
+        "difficulty": 3,
+        "createdTime": 1555792496551,
+        "shortSource": null,
+        "accessories": [
+            {
+                "options": [
+                    "衣服：旗袍",
+                    "瓷器：粘土",
+                    "诗选：诗",
+                    "壁虎：蛇"
+                ],
+                "type": 101
+            }
+        ],
+        "correctAnswer": {
+            "choice": "1",
+            "type": 201
+        },
+        "hasVideo": 1
+    },
+    {
+        "id": 50713,
+        "content": "<p>尊重：崇敬</p>",
+        "material": null,
+        "type": 1,
+        "difficulty": 5,
+        "createdTime": 1368348993598,
+        "shortSource": null,
+        "accessories": [
+            {
+                "options": [
+                    "承受：忍受",
+                    "了解：知晓",
+                    "疲倦：困乏",
+                    "动摇：松动"
+                ],
+                "type": 101
+            }
+        ],
+        "correctAnswer": {
+            "choice": "0",
+            "type": 201
+        },
+        "hasVideo": 1
+    },
+    {
+        "id": 20645,
+        "content": "<p>请从所给的四个选项中，选择最合适的一个填在问号处，使之呈现一定的规律性：</p><p><img width=\"554px\" height=\"649px\" src=\"https://fb.fbstatic.cn/api/tarzan/images/149263c30c5cc4c.png?width=700\" /></p>",
+        "material": null,
+        "type": 1,
+        "difficulty": 5,
+        "createdTime": 1352972616189,
+        "shortSource": null,
+        "accessories": [
+            {
+                "options": [
+                    "A",
+                    "B",
+                    "C",
+                    "D"
+                ],
+                "type": 101
+            }
+        ],
+        "correctAnswer": {
+            "choice": "1",
+            "type": 201
+        },
+        "hasVideo": 1
+    }
+]
