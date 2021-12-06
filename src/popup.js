@@ -6,9 +6,9 @@ var content_arr = []; // 存放各个页面题目数据
 var page_type = 0; // 页面类型 0 错题 / 1 收藏
 
 /**
- * 启动程序
+ * 收集题库的启动程序
  */
-function start() {
+function collect_tiku() {
     init_var(); // 初始化数据
     chrome.tabs.getSelected(null, function (tab) {
         page_type = tab.url.includes("error") ? 0 : 1; // 获取页面类型
@@ -31,7 +31,7 @@ function init_var() {
 /**
  * 获取页面总数
  */
-function get_pages_count(){
+function get_pages_count() {
     chrome.tabs.getSelected(null, function (tab) {　　// 先获取当前页面的tabID
         chrome.tabs.sendMessage(tab.id, { greeting: "get_pages_count" }, function (response) {
             console.log('get_pages_count: ' + response);　　// 向content-script.js发送请求信息
@@ -58,20 +58,20 @@ function redirect_to_first_page() {
  * 等待一段时间再读取页面信息（随机）
  * 读取完当前页面，则判断是否还需读取下一个页面
  */
-function get_page_tiku_info(){
-    setTimeout(function(){
+function get_page_tiku_info() {
+    setTimeout(function () {
         chrome.tabs.getSelected(null, function (tab) {　　// 先获取当前页面的tabID
             chrome.tabs.sendMessage(tab.id, { greeting: "get_page_tiku_info" }, function (response) {
                 var cpn = content_arr.length + 1; // 当前页面
                 console.log('当前页面：' + cpn + ', get_page_tiku_info: ok');　　// 向content-script.js发送请求信息
                 content_arr.push(response);
-                if(content_arr.length < pages_count){ // 是否需要读取下一个页面
-                    setTimeout(function(){
+                if (content_arr.length < pages_count) { // 是否需要读取下一个页面
+                    setTimeout(function () {
                         redirect_to_next_page();
                     }, Math.random() * 3000 + 1000)
-                } else{
+                } else {
                     var tiku = '';
-                    for(var i = 0; i < content_arr.length; i++){
+                    for (var i = 0; i < content_arr.length; i++) {
                         tiku += content_arr[i];
                     }
                     send_tiku(tiku);
@@ -81,7 +81,7 @@ function get_page_tiku_info(){
     }, Math.random() * 2000 + 2000)
 }
 
-function redirect_to_next_page(){
+function redirect_to_next_page() {
     chrome.tabs.getSelected(null, function (tab) {　　// 先获取当前页面的tabID
         chrome.tabs.sendMessage(tab.id, { greeting: "redirect_to_next_page" }, function (response) {
             console.log('redirect_to_next_page: ' + response);　　// 向content-script.js发送请求信息
@@ -90,18 +90,31 @@ function redirect_to_next_page(){
     });
 }
 
-function send_tiku(tiku){
+/**
+ * 发送题库到页面
+ * @param {} tiku 
+ */
+function send_tiku(tiku) {
     chrome.tabs.getSelected(null, function (tab) {　　// 先获取当前页面的tabID
-        chrome.tabs.sendMessage(tab.id, { greeting: tiku}, function (response) {
+        chrome.tabs.sendMessage(tab.id, { greeting: tiku }, function (response) {
             console.log('tiku: ' + response);　　// 向content-script.js发送请求信息
         });
     });
 }
 
-
+function hide_answer(){
+    chrome.tabs.getSelected(null, function (tab) {　　// 先获取当前页面的tabID
+        chrome.tabs.sendMessage(tab.id, { greeting: "hide_answer" }, function (response) {
+            console.log('hide_answer: ' + response);　　// 向content-script.js发送请求信息
+        });
+    });
+}
 /*** LISTENERS ***/
 window.onload = function () {
-    document.getElementById('clock_div').addEventListener('click', function () {
-        start();
+    document.getElementById('collect_tiku').addEventListener('click', function () {
+        collect_tiku();
+    });
+    document.getElementById('hide_answer').addEventListener('click', function () {
+        hide_answer();
     });
 };

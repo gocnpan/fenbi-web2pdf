@@ -1,6 +1,41 @@
 console.log('start');
 
-// 监听指令
+function hide_answer() {
+    console.log('hide_answer');
+    var ad = document.body.getElementsByClassName('question-fb-solution-detail'); // 答案详解
+    for (var i = 0; i < ad.length; i++) {
+        ad[i].style.display = 'none';
+    }
+    var rl = document.body.getElementsByClassName('right-options');
+    for (; 0 < rl.length; ) {
+        rl[0].className = 'fb-radioInput radio-single font-color-gray-mid border-gray-ligth2';
+    }
+    // solution-item bg-color-gray-bold ng-star-inserted
+    var tm = document.body.getElementsByClassName('solution-item bg-color-gray-bold ng-star-inserted'); // 获取题目&答案元素集
+    for (var m = 0; m < tm.length; m++) {
+        tm[m].addEventListener('click', function (el) {
+            click_timu(el);
+        });
+    }
+}
+// hide_answer();
+
+// window.onload = function () {
+//     // solution-item bg-color-gray-bold ng-star-inserted
+//     var tm = document.body.getElementsByClassName('solution-item bg-color-gray-bold ng-star-inserted'); // 获取题目&答案元素集
+//     for (var m = 0; m < tm.length; m++) {
+//         tm[m].addEventListener('click', function () {
+//             click_timu(tm[m]);
+//         });
+//     }
+// }
+
+function click_timu(tm) {
+    tm.currentTarget.getElementsByClassName('question-fb-solution-detail')[0].style.display
+     = tm.currentTarget.getElementsByClassName('question-fb-solution-detail')[0].style.display === 'none' ? '' : 'none';
+}
+
+// 监听来自命令板的指令
 chrome.extension.onMessage.addListener(
     function (request, sender, sendMessage) {
         switch (request.greeting) {
@@ -25,10 +60,21 @@ chrome.extension.onMessage.addListener(
                 pl[pl.length - 1].click();
                 sendMessage('ok');
                 break;
+            case 'hide_answer':
+                hide_answer();
+                break;
             default: // 题库信息
                 document.body.getElementsByClassName('exam-detail')[0].innerHTML = request.greeting;
                 sendMessage('ok');
-
+                // 删除所有script标签元素
+                var se = document.body.getElementsByTagName('script');
+                for (; se.length > 0;) {
+                    se[0].remove();
+                }
+                se = document.head.getElementsByTagName('script');
+                for (; se.length > 0;) {
+                    se[0].remove();
+                }
         }
     }
 );

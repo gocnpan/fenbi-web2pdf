@@ -17,7 +17,7 @@
         {
             "js": ["src/content.js"],
             "matches": ["https://www.fenbi.com/*"],
-            "run_at": "document_start"
+            "run_at": "document_idle"
         }
     ],
     "browser_action": {
