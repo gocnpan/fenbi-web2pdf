@@ -13,6 +13,13 @@
         "activeTab",
         "storage"
     ],
+    "content_scripts":[
+        {
+            "js": ["src/content.js"],
+            "matches": ["https://www.fenbi.com/*"],
+            "run_at": "document_start"
+        }
+    ],
     "browser_action": {
         "default_title": "页面转换",
         "default_popup": "src/popup.html"
