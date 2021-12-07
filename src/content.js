@@ -1,4 +1,50 @@
 console.log('start');
+var URL = window.location.href;
+
+/**
+ * 主控
+ */
+function main(){
+    st_hide_answer();
+}
+main();
+
+/**
+ * 定位到最上方
+ */
+function redirect_to_top(){
+    setTimeout(function(){
+        if(document.body.getElementsByClassName('goto-top').length > 0)
+            document.body.getElementsByClassName('goto-top')[0].click();
+    }, 500);
+}
+
+/**
+ * 自动定时开启隐藏功能
+ * 因暂时未找到【页面加载完启动当前文件】的配置 / 指针/ 方法
+ * 通过计时器的方式启动
+ */
+ function st_hide_answer(){
+    setTimeout(function () {
+        // 如果是收藏题库，则调用计时隐藏方法
+        if(URL.includes('questions/solution')){
+            hide_answer();
+        }
+        
+        // 自动定位到最上方
+        redirect_to_top();    
+        
+        /**
+        * 切换页面时，需要重新配置相应的内容
+        * paging标签加载需要一定时间，因此设置计时器
+        */
+       setTimeout(function(){
+           document.body.getElementsByClassName('paging')[0].addEventListener('click', function(){
+               st_hide_answer();
+           })
+       }, 800); // 因切换页面的按钮一般不会快速切换，因此可以设置大一些
+    }, 500)
+}
 
 function hide_answer() {
     console.log('hide_answer');
@@ -23,29 +69,8 @@ function hide_answer() {
             click_timu(el);
         });
     }
-
-    /**
-     * 切换页面时，需要重新配置相应的内容
-     * paging标签加载需要一定时间，因此设置计时器
-     */
-    setTimeout(function(){
-        document.body.getElementsByClassName('paging')[0].addEventListener('click', function(){
-            st_hide_answer();
-        })
-    }, 500); // 因切换页面的按钮一般不会快速切换，因此可以设置大一些
 }
 
-/**
- * 自动定时开启隐藏功能
- * 因暂时未找到【页面加载完启动当前文件】的配置 / 指针/ 方法
- * 通过计时器的方式启动
- */
-function st_hide_answer(){
-    setTimeout(function () {
-        hide_answer();
-    }, 500)
-}
-st_hide_answer();
 
 
 /**
