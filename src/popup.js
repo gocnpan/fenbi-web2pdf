@@ -54,7 +54,7 @@ function redirect_to_first_page() {
 }
 
 /**
- * 获取各个页面的题目信息
+ * 获取当前页面的题目信息
  * 等待一段时间再读取页面信息（随机）
  * 读取完当前页面，则判断是否还需读取下一个页面
  */
@@ -81,6 +81,9 @@ function get_page_tiku_info() {
     }, Math.random() * 2000 + 2000)
 }
 
+/**
+ * 发生指令：重定向到下一个页面
+ */
 function redirect_to_next_page() {
     chrome.tabs.getSelected(null, function (tab) {　　// 先获取当前页面的tabID
         chrome.tabs.sendMessage(tab.id, { greeting: "redirect_to_next_page" }, function (response) {
@@ -91,7 +94,7 @@ function redirect_to_next_page() {
 }
 
 /**
- * 发送题库到页面
+ * 发送题库到content script页面
  * @param {} tiku 
  */
 function send_tiku(tiku) {

@@ -4,10 +4,10 @@
     "version": "0.01",
     "description": "粉笔错题页面转换为pdf页面，并导出",
     "icons": {
-        "16": "img/icon.png",
-        "32": "img/icon.png",
-        "48": "img/icon.png",
-        "128": "img/icon.png"
+        "16": "img/fenbi.png",
+        "32": "img/fenbi.png",
+        "48": "img/fenbi.png",
+        "128": "img/fenbi.png"
     },
     "permissions": [
         "activeTab",
