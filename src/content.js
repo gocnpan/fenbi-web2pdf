@@ -1,22 +1,52 @@
 console.log('start');
-var URL = window.location.href;
+var url = window.location.href;
 
 /**
  * 主控
  */
-function main(){
+function main() {
     st_hide_answer();
+    url_watch();
 }
 main();
+
+
+function url_watch() {
+    setInterval(function () {
+        if (url !== window.location.href) {
+            url = window.location.href;
+
+            st_hide_answer();
+
+        }
+    }, 100)
+}
+
+function next_watch() {
+    /**
+    * 切换页面时，需要重新配置相应的内容
+    * paging标签加载需要一定时间，因此设置计时器
+    */
+    setTimeout(function () {
+        if (document.body.getElementsByClassName('paging').length > 0) {
+            console.log('添加下一页按钮单击监听事件');
+            document.body.getElementsByClassName('paging')[0].addEventListener('click', function () {
+                st_hide_answer();
+            })
+        }
+    }, 500); // 因切换页面的按钮一般不会快速切换，因此可以设置大一些
+}
 
 /**
  * 定位到最上方
  */
-function redirect_to_top(){
-    setTimeout(function(){
-        if(document.body.getElementsByClassName('goto-top').length > 0)
-            document.body.getElementsByClassName('goto-top')[0].click();
-    }, 500);
+function redirect_to_top() {
+    if (document.body.getElementsByClassName('goto-top').length > 0)
+        document.body.getElementsByClassName('goto-top')[0].click();
+    // setTimeout(function () {
+    //     if (document.body.getElementsByClassName('goto-top').length > 0)
+    //         document.body.getElementsByClassName('goto-top')[0].click();
+    // }, 200);
 }
 
 /**
@@ -24,25 +54,18 @@ function redirect_to_top(){
  * 因暂时未找到【页面加载完启动当前文件】的配置 / 指针/ 方法
  * 通过计时器的方式启动
  */
- function st_hide_answer(){
+function st_hide_answer() {
     setTimeout(function () {
         // 如果是收藏题库，则调用计时隐藏方法
-        if(URL.includes('questions/solution')){
+        if (url.includes('questions/solution')) {
             hide_answer();
         }
-        
+
         // 自动定位到最上方
-        redirect_to_top();    
-        
-        /**
-        * 切换页面时，需要重新配置相应的内容
-        * paging标签加载需要一定时间，因此设置计时器
-        */
-       setTimeout(function(){
-           document.body.getElementsByClassName('paging')[0].addEventListener('click', function(){
-               st_hide_answer();
-           })
-       }, 800); // 因切换页面的按钮一般不会快速切换，因此可以设置大一些
+        redirect_to_top();
+
+        // 如果有下一页的按钮，则添加该按钮监听事件
+        next_watch();
     }, 500)
 }
 
