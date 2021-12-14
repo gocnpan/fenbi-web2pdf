@@ -10,7 +10,6 @@ function main() {
 }
 main();
 
-
 function url_watch() {
     setInterval(function () {
         if (url !== window.location.href) {
@@ -19,7 +18,7 @@ function url_watch() {
             st_hide_answer();
 
         }
-    }, 100)
+    }, 500)
 }
 
 function next_watch() {
